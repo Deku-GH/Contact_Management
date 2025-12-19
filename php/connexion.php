@@ -1,3 +1,6 @@
+<?php
+require  "connect_databas.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +15,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="text-danger">
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -53,7 +56,7 @@
     </header>
     <section  class="d-flex align-items-center vh-100 ">
         <div class="container w-50   ">
-            <form action="connexion.php" method="get" class="  border border-1 rounded border-success">
+            <form action="connexion.php" method="post" class="  border border-1 rounded border-success">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="fs-4 text-light form-label">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" name="email">
@@ -61,7 +64,7 @@
             
             <div class="mb-3">
                 <label for="exampleInputPassword1" class= "text-light fs-4 form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <input type="password" class="form-control" id="Password" name="password">
             </div>
             <div class="d-flex justify-content-between text-light  mb-3">
                <span>frogot the password ?</span>
@@ -70,8 +73,10 @@
             
             <button type="submit" class="btn btn-primary w-100">connexion</button>
         </form>
+
         <?php
-        echo $_GET["email"];
+        echo $_POST["email"]."<br>";
+        echo $_POST["password"];
         ?>
 
         </div>
