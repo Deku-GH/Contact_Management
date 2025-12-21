@@ -1,5 +1,6 @@
 <?php
 require "connect_databas.php";
+
 ?>
 <?php
 $msg_name = "";
@@ -35,25 +36,7 @@ if (isset($_POST["Submit"])) {
     $user_name = $_POST['user_name'];
     $user_password = $_POST['Password1'];
 }
-
-    try{
-         $stmt=$pdo->prepare( "INSERT INTO utilisateur(user_name,possword,date_connexion)
-    VALUES(:name,:password,now())");
-   
-    $user_name = $_POST['user_name'];
-    $user_password = $_POST['Password1'];
-    // $stmt->bindParam(':value1',$_POST["user_name"]);
-    // $stmt->bindParam(':value2',$_POST["Password1"]);
-    
-     
-    $stmt ->execute([
-        'name'=> $user_name,
-        'password'=> $user_password
-
-    ]);
-
-    }catch(Exception $e){
-         echo "errer".$e->getMessage();
-        }
-
+include "../function/queries.php";
+queriesdata( $_POST ,$pdo);
+ 
     ?>

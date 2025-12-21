@@ -58,7 +58,7 @@ require "regex.php";
     </header>
     <section class="d-flex align-items-center vh-100 ">
         <div class="container bg-success   border border-1 rounded border-success   w-50  ">
-            <form class=" col-12" action="sinUP.php" method="post">
+            <form class=" col-12" action="regex.php" method="post">
 
                     <div class="mb-3">
                     <label for="exampleInputEmail1" class="fs-4 text-light form-label">fullname :</label>

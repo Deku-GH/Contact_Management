@@ -56,10 +56,10 @@ require  "connect_databas.php";
     </header>
     <section  class="d-flex align-items-center vh-100 ">
         <div class="container w-50   ">
-            <form action="connexion.php" method="post" class="  border border-1 rounded border-success">
+            <form action="../function/connexion.php" method="post" class="  border border-1 rounded border-success">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="fs-4 text-light form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" name="email">
+                <input type="name" class="form-control" id="exampleInputEmail1" name="email">
             </div>
             
             <div class="mb-3">
@@ -74,10 +74,7 @@ require  "connect_databas.php";
             <button type="submit" class="btn btn-primary w-100">connexion</button>
         </form>
 
-        <?php
-        echo $_POST["email"]."<br>";
-        echo $_POST["password"];
-        ?>
+
 
         </div>
         
