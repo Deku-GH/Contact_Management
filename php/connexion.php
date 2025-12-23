@@ -71,7 +71,7 @@ require  "connect_databas.php";
                 <span><a href="sinUP.php">s'inscript</a> </span>
             </div>
             
-            <button type="submit" class="btn btn-primary w-100">connexion</button>
+            <button  type="submit" class="btn btn-primary w-100" name="connexion" >connexion</button>
         </form>
 
 

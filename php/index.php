@@ -1,6 +1,4 @@
-<!-- <?php
-require  "connect_databas.php";
-?> -->
+
 <!DOCTYPE html>
 <html lang="en">
 

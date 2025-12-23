@@ -1,3 +1,11 @@
+<?php
+require "connect_databas.php";
+$stmt = $pdo->prepare("SELECT * FROM contact");
+$stmt->execute();
+
+
+$contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,12 +49,33 @@
                         <td>Lyon, France</td>
                     </tr>
                 </tbody>
+                <?php foreach ($contacts as $contact): ?>
+                    <tr>
+                        <td><?= $contact['name'] ?></td>
+                        <td><?= $contact['prenom'] ?></td>
+                        <td><?= $contact['email'] ?></td>
+                        <td><?= $contact['telephone'] ?></td>
+                        <td><?=  $contact['adresse'] ?></td>
+                        <td> <button type="button" class="btn btn-success w-100" data-bs-toggle="modal"
+                                data-bs-target="#modification">
+                                modification
+                            </button>
+                        </td>
+                        <td> <a href="../function/delete.php?id=<?= $contact['id'] ?>" class="btn btn-danger ">delete</a>
+                        </td>
+
+                    </tr>
+
+
+                <?php endforeach; ?>
+
             </table>
         </div>
         <div class="container">
             <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
-               ajoute contact
+                ajoute contact
             </button>
+
         </div>
 
         <!-- the modal of ajout the contact -->
@@ -59,9 +88,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method ="post"   action ="../function/contactQueries.php">
+                        <form method="post" action="../function/contactQueries.php">
 
-                            <div  class=" col-12 mb-3"> 
+                            <div class=" col-12 mb-3">
                                 <label for="exampleInputEmail1" class="fs-4  form-label">full name :</label>
                                 <input type="name" placeholder="full name" class="form-control" id="fullname"
                                     name="full_name">
@@ -78,17 +107,71 @@
                                 <input type="email" placeholder="email" class="form-control" id="email" name="email">
 
                             </div>
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label for="exampleInputEmail1" class="fs-4  form-label">telephone:</label>
-                                <input type="numbre" placeholder="telephone" class="form-control" id="telephone" name="telephone">
+                                <input type="numbre" placeholder="telephone" class="form-control" id="telephone"
+                                    name="telephone">
 
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class=" fs-4 form-label">address:</address></label>
-                                <input type="text" placeholder="Addresse" class="form-control" id="Addresse" name="Addresse"></div>
+                                <input type="text" placeholder="Addresse" class="form-control" id="Addresse"
+                                    name="Addresse">
+                            </div>
 
                             <div class="d-flex justify-content-between text-light  mb-3"></div>
                             <button type="submit" class="btn btn-primary w-100" name="Submit">add</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div class="modal fade" id="modification" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="../function/modification.php">
+
+                            <div class=" col-12 mb-3">
+                                <label for="exampleInputEmail1" class="fs-4  form-label">full name :</label>
+                                <input type="name" placeholder="full name" class="form-control" id="fullname"
+                                    name="full_name" value="<?=  $contact['name']  ?>">
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="fs-4 form-label">last name :</label>
+                                <input type="name" placeholder="lastName" class="form-control" id="lastName"
+                                    name="last_name" value="<?=  $contact['prenom']  ?>">
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="fs-4  form-label">Email:</label>
+                                <input type="email" placeholder="email" class="form-control" id="email" value="<?=  $contact['email']  ?>" name="email" >
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="fs-4  form-label">telephone:</label>
+                                <input type="numbre" placeholder="telephone" class="form-control" id="telephone"
+                                    name="telephone" value="<?=  $contact['telephone']  ?>">
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class=" fs-4 form-label">address:</address></label>
+                                <input type="text" placeholder="Addresse" class="form-control" id="Addresse"  value="<?=  $contact['adresse']  ?>"
+                                    name="Addresse">
+                            </div>
+
+                            <div class="d-flex justify-content-between text-light  mb-3"></div>
+                            <button type="submit"  class="btn btn-primary w-100" name="Submit">add</button>
                         </form>
                     </div>
                     <div class="modal-footer">

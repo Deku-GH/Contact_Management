@@ -1,5 +1,5 @@
 <?php 
-echo "yeah u right";
+
 function queriesdata($data ,$pdo){
        try{
          $stmt=$pdo->prepare( "INSERT INTO utilisateur(user_name,possword,date_connexion)VALUES(:name,:password,now())");
